@@ -1,4 +1,4 @@
-const GITHUB_REPO_URL = "https://github.com/yourusername/your-repo";
+const GITHUB_REPO_URL = "https://github.com/zardakgg/profile";
 
 const menu = document.getElementById('custom-context-menu');
 const copyBtn = document.getElementById('copy-website');
