@@ -1,0 +1,880 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* disables scroll */
+}
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(135deg, #d43b71 0%, #1f8ba9 100%);
+  font-family: "Roboto", sans-serif;
+  padding: 40px 0 0 0; /* <-- Added 40px top padding */
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+body:before {
+  content: "";
+  height: 0px;
+  padding: 0px;
+  border: 130em solid #313440;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  z-index: 2;
+  display: block;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-animation: puff 0.5s 1.8s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, borderRadius 0.2s 2.3s linear forwards;
+  animation: puff 0.5s 1.8s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, borderRadius 0.2s 2.3s linear forwards;
+}
+
+h1,
+h2 {
+  font-weight: 500;
+  margin: 0px 0px 5px 0px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+p {
+  margin: 0px;
+  text-align: center;
+}
+
+/* --- Material You Shapes and Effects --- */
+
+/* Organic card shape */
+.profile-card {
+  background: linear-gradient(135deg, #f8bbd0 0%, #bcdee7 100%);
+  width: 440px;
+  min-height: 320px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  overflow: visible;
+  opacity: 1;
+  margin-top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%;
+  box-shadow:
+    0 4px 24px 0 rgba(33, 150, 243, 0.10),
+    0 1.5px 6px 0 rgba(0,0,0,0.08);
+  transition: border-radius 0.7s cubic-bezier(0.86, 0, 0.07, 1), box-shadow 0.5s;
+  animation: morphBorder 8s infinite cubic-bezier(0.86, 0, 0.07, 1);
+  text-align: center;
+}
+
+/* Animate card shape on hover */
+.profile-card:hover {
+  border-radius: 60% 40% 45% 55% / 40% 60% 50% 50%;
+  box-shadow:
+    0 8px 32px 0 rgba(33, 150, 243, 0.18),
+    0 3px 12px 0 rgba(0,0,0,0.12);
+}
+
+/* Avatar with Material You shape */
+.profile-avatar {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 16px auto;
+  border-radius: 60% 40% 70% 30% / 40% 70% 30% 60%;
+  box-shadow:
+    0 0 0 4px #fff,
+    0 0 0 8px rgba(255, 193, 7, 0.18);
+  padding: 4px;
+  background: #fff;
+  transition: border-radius 0.7s cubic-bezier(0.86, 0, 0.07, 1), box-shadow 0.5s;
+  animation: morphBorder 6s infinite cubic-bezier(0.86, 0, 0.07, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.profile-avatar:hover {
+  border-radius: 40% 60% 60% 40% / 60% 40% 70% 30%;
+  box-shadow:
+    0 0 0 4px #fff,
+    0 0 0 12px rgba(255, 193, 7, 0.25),
+    0 0 24px 8px rgba(255, 193, 7, 0.18);
+  animation-play-state: paused;
+}
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* Card header and bio with soft shapes */
+.profile-card header,
+.profile-card .profile-bio,
+.profile-social-links {
+  background: rgba(255,255,255,0.85);
+  border-radius: 32px 48px 40px 36px / 40px 36px 48px 32px;
+  box-shadow: 0 2px 8px 0 rgba(33, 150, 243, 0.08);
+  margin-bottom: 16px;
+  padding: 24px 20px;
+  transition: border-radius 0.7s cubic-bezier(0.86, 0, 0.07, 1), box-shadow 0.5s;
+  text-align: center;
+}
+
+/* Social links as Material You chips */
+.profile-social-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; /* space between icons */
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0 0;
+}
+
+.profile-social-links li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-social-links li a {
+  background: linear-gradient(135deg, #ff80ab 60%, #ffd740 100%);
+  color: #6d2080;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%;
+  box-shadow: 0 2px 8px 0 rgba(33, 150, 243, 0.10), 0 1.5px 6px 0 rgba(0,0,0,0.08);
+  transition: 
+    background 0.3s, 
+    color 0.3s, 
+    border-radius 0.7s cubic-bezier(0.86, 0, 0.07, 1), 
+    box-shadow 0.3s;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  font-size: 1.4em;
+  cursor: pointer;
+  animation: morphBorder 6s infinite cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.profile-social-links li a:hover {
+  background: linear-gradient(135deg, #ffd740 60%, #ff80ab 100%);
+  color: #fff;
+  border-radius: 60% 40% 45% 55% / 40% 60% 50% 50%;
+  box-shadow: 0 4px 16px 0 rgba(33, 150, 243, 0.18), 0 3px 12px 0 rgba(0,0,0,0.12);
+}
+
+/* Optional: Ripple effect on click */
+.profile-social-links li a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1), height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.8s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.profile-social-links li a:active::after {
+  width: 120%;
+  height: 120%;
+  opacity: 1;
+  transition: 0s;
+}
+
+/* Different organic shapes for each social icon */
+.profile-social-links li:nth-child(1) a {
+  border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+}
+.profile-social-links li:nth-child(2) a {
+  border-radius: 50% 60% 40% 60% / 60% 50% 60% 40%;
+}
+.profile-social-links li:nth-child(3) a {
+  border-radius: 55% 45% 60% 40% / 40% 55% 45% 60%;
+}
+.profile-social-links li:nth-child(4) a {
+  border-radius: 65% 35% 45% 55% / 55% 65% 35% 45%;
+}
+/* Add more if you have more icons */
+
+/* Position .spotify below social links and prevent overlap */
+.spotify {
+  display: block;
+  margin: 32px auto 0 auto;   /* space above, centered horizontally */
+  width: 440px;
+  clear: both;
+  position: static;
+  z-index: 1;
+}
+
+/* Animate organic morphing */
+@keyframes morphBorder {
+  0% {
+    border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%;
+  }
+  25% {
+    border-radius: 60% 40% 45% 55% / 40% 60% 50% 50%;
+  }
+  50% {
+    border-radius: 50% 50% 60% 40% / 60% 50% 40% 50%;
+  }
+  75% {
+    border-radius: 45% 55% 40% 60% / 50% 60% 40% 60%;
+  }
+  100% {
+    border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%;
+  }
+}
+
+/* Material You themed custom context menu */
+#custom-context-menu {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  min-width: 200px;
+  background: linear-gradient(135deg, rgba(248,187,208,0.85) 0%, rgba(188,222,231,0.85) 100%);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(33, 150, 243, 0.18), 0 3px 12px 0 rgba(0,0,0,0.12);
+  padding: 8px 0;
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+  border: none;
+  animation: none;
+  backdrop-filter: blur(8px);
+}
+
+@media (prefers-color-scheme: dark) {
+  #custom-context-menu {
+    background: linear-gradient(135deg, rgba(35,38,58,0.92) 0%, rgba(45,47,58,0.92) 100%);
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.5), 0 3px 12px 0 rgba(0,0,0,0.18);
+    border-radius: 18px;
+    animation: none;
+  }
+  .social_github,
+  .social_instagram,
+  .social_linkedin,
+  .social_twitter {
+    background: linear-gradient(135deg, #b80641 60%, #6c1e99 100%);
+    color: #6d2080;
+  }
+  .social_github:hover,
+  .social_instagram:hover,
+  .social_twitter:hover{
+    background: linear-gradient(135deg, #6c1e99 60%, #b80641 100%);
+    color: #fff;
+  }
+}
+
+/* Morphing effect for context menu items */
+.context-menu-item {
+  padding: 14px 28px;
+  cursor: pointer;
+  font-size: 1.08em;
+  color: #6d2080;
+  background: transparent;
+  border: none;
+  outline: none;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-radius 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+  border-radius: 18px;
+  margin: 0 8px 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: morphMenuItem 8s infinite cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.context-menu-item:last-child {
+  margin-bottom: 0;
+}
+
+.context-menu-item:hover,
+.context-menu-item:focus {
+  background: linear-gradient(90deg, #409cff 60%, #ff80ab 100%);
+  color: #23263a;
+  border-radius: 28px 18px 28px 18px / 18px 28px 18px 28px;
+  outline: none;
+  animation: morphMenuItemHover 1s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+/* Morphing keyframes for menu items */
+@keyframes morphMenuItem {
+  0% {
+    border-radius: 18px;
+  }
+  50% {
+    border-radius: 24px 16px 24px 16px / 16px 24px 16px 24px;
+  }
+  100% {
+    border-radius: 18px;
+  }
+}
+
+@keyframes morphMenuItemHover {
+  0% {
+    border-radius: 18px;
+  }
+  100% {
+    border-radius: 28px 18px 28px 18px / 18px 28px 18px 28px;
+  }
+}
+
+/* Dark mode for context menu items */
+@media (prefers-color-scheme: dark) {
+  .context-menu-item {
+    color: #40a0ff;
+    background: transparent;
+  }
+  .context-menu-item:hover,
+  .context-menu-item:focus {
+    background: linear-gradient(90deg, #4e4376 60%, #ffd740 100%);
+    color: #23263a;
+  }
+}
+
+/* Keyframes */
+@-webkit-keyframes init {
+  0% {
+    width: 0px;
+    height: 0px;
+  }
+  100% {
+    width: 56px;
+    height: 56px;
+    margin-top: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes init {
+  0% {
+    width: 0px;
+    height: 0px;
+  }
+  100% {
+    width: 56px;
+    height: 56px;
+    margin-top: 0px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes puff {
+  0% {
+    top: 100%;
+    height: 0px;
+    padding: 0px;
+  }
+  100% {
+    top: 50%;
+    height: 100%;
+    padding: 0px 100%;
+  }
+}
+
+@keyframes puff {
+  0% {
+    top: 100%;
+    height: 0px;
+    padding: 0px;
+  }
+  100% {
+    top: 50%;
+    height: 100%;
+    padding: 0px 100%;
+  }
+}
+
+@-webkit-keyframes borderRadius {
+  0% {
+    -webkit-border-radius: 50%;
+  }
+  100% {
+    -webkit-border-radius: 0px;
+  }
+}
+
+@keyframes borderRadius {
+  0% {
+    border-radius: 50%;
+  }
+  100% {
+    border-radius: 0px;
+  }
+}
+
+@-webkit-keyframes moveDown {
+  0% {
+    top: 50%;
+  }
+  50% {
+    top: 40%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes moveDown {
+  0% {
+    top: 50%;
+  }
+  50% {
+    top: 40%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@-webkit-keyframes moveUp {
+  0% {
+    background: #FFB300;
+    top: 100%;
+  }
+  50% {
+    top: 40%;
+  }
+  100% {
+    top: 50%;
+    background: #E0E0E0;
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    background: #FFB300;
+    top: 100%;
+  }
+  50% {
+    top: 40%;
+  }
+  100% {
+    top: 50%;
+    background: #E0E0E0;
+  }
+}
+
+@-webkit-keyframes materia {
+  0% {
+    background: #E0E0E0;
+  }
+  50% {
+    -webkit-border-radius: 4px;
+  }
+  100% {
+    width: 440px;
+    height: 280px;
+    background: #FFFFFF;
+    -webkit-border-radius: 4px;
+  }
+}
+
+@keyframes materia {
+  0% {
+    background: #E0E0E0;
+  }
+  50% {
+    border-radius: 4px;
+  }
+  100% {
+    width: 440px;
+    height: 280px;
+    background: #FFFFFF;
+    border-radius: 4px;
+  }
+}
+
+@-webkit-keyframes moveIn {
+  0% {
+    margin-top: 50px;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    margin-top: -20px;
+  }
+}
+
+@keyframes moveIn {
+  0% {
+    margin-top: 50px;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    margin-top: -20px;
+  }
+}
+
+@-webkit-keyframes scaleIn {
+  0% {
+    -webkit-transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes ripple {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+  50%,
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+  50%,
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media screen and (min-aspect-ratio: 4/3) {
+  body {
+    background-size: cover;
+  }
+  body:before {
+    width: 0px;
+  }
+}
+
+@media screen and (min-height: 480px) {
+  .profile-card header {
+    width: auto;
+    height: auto;
+    padding: 30px 20px;
+    display: block;
+    float: none;
+    border-right: none;
+  }
+  .profile-card .profile-bio {
+    width: auto;
+    height: auto;
+    padding: 15px 20px 30px 20px;
+    display: block;
+    float: none;
+  }
+  .profile-social-links {
+    width: 100%;
+    display: block;
+    float: none;
+  }
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) {
+  .profile-card {
+    width: 95vw;
+    min-width: unset;
+    min-height: unset;
+    padding: 0;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, 0);
+    border-radius: 32px;
+    box-shadow: 0 2px 12px 0 rgba(33, 150, 243, 0.10);
+  }
+
+  .profile-card header,
+  .profile-card .profile-bio,
+  .profile-social-links {
+    padding: 16px 8px;
+    margin-bottom: 12px;
+    border-radius: 24px;
+  }
+
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 12px;
+    padding: 2px;
+  }
+
+  h1 {
+    font-size: 1.3em;
+  }
+
+  h2 {
+    font-size: 1em;
+  }
+
+  .profile-social-links {
+    gap: 8px;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    margin: 12px 0 0 0;
+  }
+
+  .profile-social-links li a {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1em;
+  }
+
+
+}
+
+/* Prevent horizontal scroll on all devices */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #181c24 0%, #2d2f3a 100%);
+    color: #f3e9f7;
+  }
+
+  .profile-card {
+    background: linear-gradient(135deg, #23263a 0%, #2d2f3a 100%);
+    box-shadow: 0 4px 24px 0 rgba(0,0,0,0.5), 0 1.5px 6px 0 rgba(0,0,0,0.18);
+    border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%;
+  }
+
+  .profile-card header,
+  .profile-card .profile-bio,
+  .profile-social-links {
+    background: rgba(30, 32, 46, 0.92);
+    color: #f3e9f7;
+    border-radius: 32px 48px 40px 36px / 40px 36px 48px 32px;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.18);
+  }
+
+  .profile-avatar {
+    background: #23263a;
+    box-shadow: 0 0 0 4px #23263a, 0 0 0 8px rgba(255, 193, 7, 0.10);
+  }
+
+  .profile-social-links li a {
+    background: linear-gradient(135deg, #4e4376 60%, #2b5876 100%);
+    color: #268ce4;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.18);
+  }
+
+  .profile-social-links li a:hover {
+    background: linear-gradient(135deg, #1c71c6 60%, #4e4376 100%);
+    color: #23263a;
+  }
+
+  h1, h2, p, .profile-card header, .profile-card .profile-bio {
+    color: #f3e9f7;
+  }
+
+  .social_instagram,
+  .social_github,
+  .social_twitter {
+    background: linear-gradient(135deg, #4e4376 60%, #2b5876 100%);
+    color: #ffd740;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.18);
+  }
+  .social_instagram:hover,
+  .social_github:hover,
+  .social_twitter:hover {
+    background: linear-gradient(135deg, #ffd740 60%, #4e4376 100%);
+    color: #23263a;
+  }
+
+  .social_instagram {
+    background: linear-gradient(135deg, #ff5370 60%, #ffd740 100%);
+    color: #23263a;
+  }
+  .social_github {
+    background: linear-gradient(135deg, #64b5f6 60%, #23263a 100%);
+    color: #ffd740;
+  }
+  .social_twitter {
+    background: linear-gradient(135deg, #40c4ff 60%, #1de9b6 100%);
+    color: #23263a;
+  }
+  .social_instagram:hover {
+    background: linear-gradient(135deg, #ffd740 60%, #ff5370 100%);
+    color: #fff;
+  }
+  .social_github:hover {
+    background: linear-gradient(135deg, #23263a 60%, #64b5f6 100%);
+    color: #fff;
+  }
+  .social_twitter:hover {
+    background: linear-gradient(135deg, #1de9b6 60%, #40c4ff 100%);
+    color: #fff;
+  }
+}
+
+.social_instagram,
+.social_github,
+.social_twitter {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 6px;
+  background: linear-gradient(135deg, #ff80ab 60%, #ffd740 100%);
+  color: #6d2080;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%; /* circular */
+  box-shadow: 0 2px 8px 0 rgba(33, 150, 243, 0.10), 0 1.5px 6px 0 rgba(0,0,0,0.08);
+  transition:
+    background 0.3s,
+    color 0.3s,
+    border-radius 0.7s cubic-bezier(0.86, 0, 0.07, 1),
+    box-shadow 0.3s,
+    width 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+  font-size: 1.4em;
+  position: relative;
+  overflow: hidden;
+  animation: morphPill 6s infinite cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+/* Hide the label by default */
+.social-label {
+  display: none;
+}
+
+/* On hover: morph to pill/rectangular and show label */
+.social_instagram:hover,
+.social_github:hover,
+.social_twitter:hover {
+  width: 150px; /* Increased width for full label coverage */
+  border-radius: 32px 24px 32px 24px / 24px 32px 24px 32px;
+  justify-content: center; /* Center align the content */
+  background: linear-gradient(135deg, #40a3ff 60%, #ff80ab 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px 0 rgba(33, 150, 243, 0.18), 0 3px 12px 0 rgba(0,0,0,0.12);
+  animation-play-state: paused;
+}
+
+/* Show the label only on hover, sliding in */
+.social_instagram:hover .social-label,
+.social_github:hover .social-label,
+.social_twitter:hover .social-label {
+  display: inline-block;
+  opacity: 1;
+  transform: translateX(0);
+  margin-left: 8px;
+  white-space: nowrap;
+  transition:
+    opacity 0.3s cubic-bezier(0.4,0,0.2,1),
+    transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Animate label sliding in */
+.social-label {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition:
+    opacity 0.3s cubic-bezier(0.4,0,0.2,1),
+    transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: inherit;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .social_instagram,
+  .social_github,
+  .social_twitter {
+    background: linear-gradient(135deg, #4e4376 60%, #2b5876 100%);
+    color: rgb(40, 178, 223);
+  }
+  .social_instagram:hover,
+  .social_github:hover,
+  .social_twitter:hover {
+    background: linear-gradient(135deg, #249de8 60%, #4e4376 100%);
+    color: #23263a;
+  }
+}
+
+/* Morphing animation for pill shape */
+@keyframes morphPill {
+  0% {
+    border-radius: 24px 32px 24px 32px / 32px 24px 32px 24px;
+  }
+  50% {
+    border-radius: 28px 36px 28px 36px / 36px 28px 36px 28px;
+  }
+  100% {
+    border-radius: 24px 32px 24px 32px / 32px 24px 32px 24px;
+  }
+}
+
+@media (pointer: fine) {
+  html, body, button, a, .profile-card, .context-menu-item,
+  .social_instagram, .social_github, .social_twitter {
+    cursor: url('cursor.png'), auto;
+  }
+}
+
+footer {
+  flex-shrink: 0;
+  width: 100%;
+  text-align: center;
+  padding: 16px 0 12px 0;
+  background: transparent;
+  color: #23263a;
+  font-size: 1em;
+}

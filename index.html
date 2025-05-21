@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Card</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="fruit.png">
+</head>
+<body>
+  <div class="page-container">
+    <aside class="profile-card">
+
+      <header>
+        <!-- here’s the avatar -->
+        <div class="profile-avatar">
+          <img src="fruit.png" class="hoverZoomLink">
+        </div>
+      <br>
+        <!-- the username -->
+        <h1>
+          Sarthak Ghosh
+        </h1>
+
+        <!-- and role or location -->
+        <h2 class="status" id="status-text">
+          Learning How to Drive...
+        </h2>
+
+      </header>
+
+      <!-- bit of a bio; who are you? -->
+      <div class="profile-bio">
+
+        <p>
+         I love doing various things, like mixing shampoos.
+        </p>
+
+      <br>
+      <!-- some social links to show off -->
+      <button class="social_instagram" onclick="window.open('https://www.instagram.com/im_zardak');">
+        <img src="instagramicn.svg" alt="Instagram" style="width: 24px; height: 24px;" />
+        <span class="social-label">Instagram</span>
+      </button><br><br>
+      <button class="social_twitter" onclick="window.open('https://x.com/dogevoi');">
+        <img src="xicn.svg" alt="X (Twitter)" style="width: 24px; height: 24px;" />
+        <span class="social-label">Twitter</span>
+      </button><br><br>  <!-- Custom Context Menu -->
+      <div id="custom-context-menu" style="display:none;position:fixed;z-index:9999;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.15);padding:8px 0;min-width:180px;font-family:Roboto,sans-serif;">
+        <div class="context-menu-item" id="copy-website" style="padding:10px 20px;cursor:pointer;">📋 Copy this website</div>
+        <div class="context-menu-item" id="view-github" style="padding:10px 20px;cursor:pointer;">🔗 View this website's repository</div>
+      </div>
+      <button class="social_github" onclick="window.open('https://github.com/Dormanor');">
+        <img src="githubicn.svg" alt="GitHub" style="width: 24px; height: 24px;" />
+        <span class="social-label">GitHub</span>
+      </button><br><br>
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1oVrNSqi3Xnh4IMEE8Uvgv?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <p>Made with ❤️ by Sarthak Ghosh<br><br><i><img src="flag.png" style="display: relative; padding-left: 10px;"></i></p>
+    </aside>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
